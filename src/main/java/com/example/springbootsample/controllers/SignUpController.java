@@ -25,8 +25,8 @@ public class SignUpController {
     @GetMapping("/signup")
     public String getSignup(Model model, Locale locale, @ModelAttribute SignupForm form){
         // obtener genero
-        Map<String, Integer> gernderMap = userApplicationService.getGenderMap(locale);
-        model.addAttribute("gendeMap", gernderMap);
+        Map<String, Integer> genderMap = userApplicationService.getGenderMap(locale);
+        model.addAttribute("gendeMap", genderMap);
 
         // transición a usuario signup
         return "user/signup";

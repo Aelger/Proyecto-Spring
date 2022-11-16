@@ -10,15 +10,12 @@ import java.util.Map;
 
 @Service
 public class UserApplicationService {
-
     @Autowired
     private MessageSource messageSource;
 
     // Generamos un gender map
     public Map<String, Integer> getGenderMap(Locale locale) {
-
         Map<String, Integer> genderMap = new LinkedHashMap<>();
-
         String male = messageSource.getMessage("male", null, locale);
         String female = messageSource.getMessage("female", null, locale);
         genderMap.put(male, 1);
