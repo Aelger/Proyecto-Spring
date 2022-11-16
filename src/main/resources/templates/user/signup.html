@@ -12,31 +12,43 @@
 <body class="bg-light">
     <form id="signup-form" method="post" class="form-signup" th:object="${signupForm}" th:action="@{/user/signup}">
         <h1 class="text-center" th:text="#{user.signup.title}"></h1>
+        <!--USER ID-->
         <div class="form-group">
             <label for="userId" th:text="#{userId}"></label>
-            <input type="text" class="form-control" th:field="*{userId}" placeholder="User Id" name="userId" id="userId">
+            <input type="text" class="form-control" th:field="*{userId}" placeholder="User Id" name="userId" id="userId" th:errorclass="is-invalid" >
+            <div class="invalid-feedback" th:errors="*{userId}"></div>
         </div>
+        <!--PASSWORD-->
         <div class="form-group">
             <label for="password" th:text="#{password}"></label>
-            <input type="text" class="form-control" th:field="*{password}" placeholder="Password" name="password" id="password">
+            <input type="text" class="form-control" th:field="*{password}" placeholder="Password" name="password" id="password" th:errorclass="is-invalid">
+            <div class="invalid-feedback" th:errors="*{password}"></div>
         </div>
+        <!--USERNAME-->
         <div class="form-group">
             <label for="userName" th:text="#{userName}"></label>
-            <input type="text" class="form-control" th:field="*{userName}" placeholder="name" name="userName" id="userName">
+            <input type="text" class="form-control" th:field="*{userName}" placeholder="name" name="userName" id="userName" th:errorclass="is-invalid">
+            <div class="invalid-feedback" th:errors="*{userName}"></div>
         </div>
+        <!--BIRTHDAY-->
         <div class="form-group">
             <label for="birthday" th:text="#{birthday}"></label>
-            <input type="text" class="form-control" th:field="*{birthday}" placeholder="birthday" name="birthday" id="birthday">
+            <input type="text" class="form-control" th:field="*{birthday}" placeholder="birthday" name="birthday" id="birthday" th:errorclass="is-invalid">
+            <div class="invalid-feedback" th:errors="*{birthday}"></div>
         </div>
+        <!--AGE-->
         <div class="form-group">
             <label for="age" th:text="#{age}"></label>
-            <input type="text" class="form-control" th:field="*{age}" placeholder="age" name="age" id="age">
+            <input type="text" class="form-control" th:field="*{age}" placeholder="age" name="age" id="age" th:errorclass="is-invalid">
+            <div class="invalid-feedback" th:errors="*{age}"></div>
         </div>
+        <!--GENDER-->
         <div class="form-group">
             <div th:each="item:${gendeMap}" class="form-check-inline">
-                <input type="radio" class="form-check-input" th:value="${item.value}" id="radio">
+                <input type="radio" name="gender" class="form-check-input" th:value="${item.value}" id="radio" th:errorclass="is-invalid">
                 <label for="radio" class="form-check-label" th:field="*{gender}" th:text="${item.key}"></label>
             </div>
+            <div class="text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></div>
         </div>
         <input type="submit" th:value="#{user.signup.btn}" class="btn btn-primary w-100 mt-3">
     </form>

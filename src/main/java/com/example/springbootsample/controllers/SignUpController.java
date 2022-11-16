@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,12 @@ public class SignUpController {
 
     // user signup porceso
     @PostMapping("/signup")
-    public String postSignup(@ModelAttribute SignupForm form){
+    public String postSignup(Model model, Locale locale, @ModelAttribute SignupForm form, BindingResult bindingResult){
+        //chequeo fallos en bindings
+        if(bindingResult.hasErrors()){
+            //NG: retorna a la pantalla de registro
+            return getSignup(model, locale, form);
+        }
         log.info(form.toString());
         return "redirect:login";
     }
