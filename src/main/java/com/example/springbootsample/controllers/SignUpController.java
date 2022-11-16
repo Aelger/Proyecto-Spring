@@ -28,7 +28,6 @@ public class SignUpController {
         // obtener genero
         Map<String, Integer> genderMap = userApplicationService.getGenderMap(locale);
         model.addAttribute("gendeMap", genderMap);
-
         // transición a usuario signup
         return "user/signup";
     }
@@ -42,6 +41,6 @@ public class SignUpController {
             return getSignup(model, locale, form);
         }
         log.info(form.toString());
-        return "redirect:login";
+        return "redirect:/login";
     }
 }
